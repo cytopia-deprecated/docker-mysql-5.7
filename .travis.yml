@@ -116,8 +116,8 @@ script:
   - mysql --user=root --password=${MY_MYSQL_PASS} --host=127.0.0.1 -e "SHOW VARIABLES WHERE Variable_name LIKE '%general%log%';" | grep 'ON'
 
   - ls -la /tmp/mysql-log
-  - cat /tmp/mysql-log/error.log
-  - cat /tmp/mysql-log/mysql.log
+  - tail -200 /tmp/mysql-log/error.log
+  - tail -200 /tmp/mysql-log/mysql.log
 
   - docker stop "$( docker ps | grep  "${MY_DOCKER_NAME}" | awk '{print $1}' )"
   - docker rm "${MY_DOCKER_NAME}"
@@ -143,8 +143,8 @@ script:
   - mysql --user=root --password=${MY_MYSQL_PASS} --host=127.0.0.1 -e "SHOW VARIABLES WHERE Variable_name LIKE '%general%log%';" | grep 'ON'
 
   - ls -la /tmp/mysql-log
-  - cat /tmp/mysql-log/error.log
-  - cat /tmp/mysql-log/mysql.log
+  - tail -200 /tmp/mysql-log/error.log
+  - tail -200 /tmp/mysql-log/mysql.log
 
   - docker stop "$( docker ps | grep  "${MY_DOCKER_NAME}" | awk '{print $1}' )"
   - docker rm "${MY_DOCKER_NAME}"

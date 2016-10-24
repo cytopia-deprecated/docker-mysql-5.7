@@ -90,15 +90,6 @@ print_headline "4. Installing Packages"
 run "yum -y install \
 	mysql-community-server
 	"
-#	mysql-community-client \
-#	mysql-community-common \
-#	mysql-community-devel \
-#	mysql-community-embedded \
-#	mysql-community-libs \
-#	mysql-community-libs-compat \
-#	mysql-community-server \
-#	mysql-community-test
-#	"
 
 
 
