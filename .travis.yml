@@ -287,7 +287,6 @@ script:
 
   - docker stop "$( docker ps | grep  "${MY_DOCKER_NAME}" | awk '{print $1}' )"
   - docker rm "${MY_DOCKER_NAME}"
-  - rm -rf /tmp/mysql-data/*
 
 
 
@@ -330,6 +329,7 @@ script:
 
   - docker stop "$( docker ps | grep  "${MY_DOCKER_NAME}" | awk '{print $1}' )"
   - docker rm "${MY_DOCKER_NAME}"
+  - rm -rf /tmp/mysql-data/*
 
   ##
   ## 05.) [b](SILENT) Mount database dir and re-use it
