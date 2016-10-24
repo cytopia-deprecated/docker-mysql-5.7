@@ -23,6 +23,13 @@ env:
 ###
 install:
 
+  # Create overview section script
+  - echo "#!/bin/sh" > /tmp/section.sh
+  - echo " echo '============================================================'" >> /tmp/section.sh
+  - echo " echo \"= ${1}\"" >> /tmp/section.sh
+  - echo " echo '============================================================'" >> /tmp/section.sh
+  - chmod +x /tmp/section.sh
+
   # Create directories
   - mkdir -p /tmp/mysql-log
   - mkdir -p /tmp/mysql-sock
@@ -55,6 +62,7 @@ script:
   ##
   ## 01.) [a](DEBUG) Test plain docker
   ##
+  - /tmp/section.sh "01.) [a](DEBUG) Test plain docker"
   - docker run
       -p 127.0.0.1:3306:3306
       -e DEBUG_COMPOSE_ENTRYPOINT=1
@@ -72,9 +80,11 @@ script:
 
   - docker stop "$( docker ps | grep  "${MY_DOCKER_NAME}" | awk '{print $1}' )"
   - docker rm "${MY_DOCKER_NAME}"
+
   ##
   ## 01.) [b](SILENT) Test plain docker
   ##
+  - /tmp/section.sh "01.) [b](SILENT) Test plain docker"
   - docker run
       -p 127.0.0.1:3306:3306
       -e MYSQL_ROOT_PASSWORD=${MY_MYSQL_PASS}
@@ -96,6 +106,7 @@ script:
   ##
   ## 02.) [a](DEBUG) With logging
   ##
+  - /tmp/section.sh "02.) [a](DEBUG) With logging"
   - docker run
       -p 127.0.0.1:3306:3306
       -v /tmp/mysql-log:/var/log/mysql
@@ -121,9 +132,11 @@ script:
 
   - docker stop "$( docker ps | grep  "${MY_DOCKER_NAME}" | awk '{print $1}' )"
   - docker rm "${MY_DOCKER_NAME}"
+
   ##
   ## 02.) [a](SILENT) With logging
   ##
+  - /tmp/section.sh "02.) [a](SILENT) With logging"
   - docker run
       -p 127.0.0.1:3306:3306
       -v /tmp/mysql-log:/var/log/mysql
@@ -155,6 +168,7 @@ script:
   ##
   ## 03.) [a](DEBUG) With config overwrite
   ##
+  - /tmp/section.sh "03.) [a](DEBUG) With config overwrite"
   - printf "[mysqld]\n%s\n" "innodb-buffer-pool-size = 536870912" > /tmp/mysql-conf/buffer.cnf
 
   - docker run
@@ -177,9 +191,12 @@ script:
 
   - docker stop "$( docker ps | grep  "${MY_DOCKER_NAME}" | awk '{print $1}' )"
   - docker rm "${MY_DOCKER_NAME}"
+  - rm -f /tmp/mysql-conf/buffer.cnf
+
   ##
   ## 03.) [a](SILENT) With config overwrite
   ##
+  - /tmp/section.sh "03.) [a](SILENT) With config overwrite"
   - printf "[mysqld]\n%s\n" "innodb-buffer-pool-size = 536870912" > /tmp/mysql-conf/buffer.cnf
 
   - docker run
@@ -201,15 +218,16 @@ script:
 
   - docker stop "$( docker ps | grep  "${MY_DOCKER_NAME}" | awk '{print $1}' )"
   - docker rm "${MY_DOCKER_NAME}"
+  - rm -f /tmp/mysql-conf/buffer.cnf
 
 
 
   ##
   ## 04.) [a](DEBUG) Change socket path
   ##
+  - /tmp/section.sh "04.) [a](DEBUG) Change socket path"
   - docker run
       -p 127.0.0.1:3306:3306
-      -v /tmp/mysql-conf:/etc/mysql/conf.d
       -e MYSQL_SOCKET_DIR=/usr/local/mysqld-sock
       -e DEBUG_COMPOSE_ENTRYPOINT=1
       -e MYSQL_ROOT_PASSWORD=${MY_MYSQL_PASS}
@@ -228,12 +246,13 @@ script:
 
   - docker stop "$( docker ps | grep  "${MY_DOCKER_NAME}" | awk '{print $1}' )"
   - docker rm "${MY_DOCKER_NAME}"
+
   ##
   ## 04.) [b](SILENT) Change socket path
   ##
+  - /tmp/section.sh "04.) [b](SILENT) Change socket path"
   - docker run
       -p 127.0.0.1:3306:3306
-      -v /tmp/mysql-conf:/etc/mysql/conf.d
       -e MYSQL_SOCKET_DIR=/usr/local/mysqld-sock
       -e MYSQL_ROOT_PASSWORD=${MY_MYSQL_PASS}
       --name ${MY_DOCKER_NAME} cytopia/${MY_DOCKER_NAME} &
@@ -258,9 +277,9 @@ script:
   ## 05.) [a](DEBUG) Mount database dir and re-use it
   ##
   # FIRST RUN
+  - /tmp/section.sh "05.) [a](DEBUG) Mount database dir and re-use it"
   - docker run
       -p 127.0.0.1:3306:3306
-      -v /tmp/mysql-conf:/etc/mysql/conf.d
       -v /tmp/mysql-data:/var/lib/mysql
       -e MYSQL_SOCKET_DIR=/usr/local/mysqld-sock
       -e DEBUG_COMPOSE_ENTRYPOINT=1
@@ -278,7 +297,6 @@ script:
   # SECOND RUN
   - docker run
       -p 127.0.0.1:3306:3306
-      -v /tmp/mysql-conf:/etc/mysql/conf.d
       -v /tmp/mysql-data:/var/lib/mysql
       -e MYSQL_SOCKET_DIR=/usr/local/mysqld-sock
       -e DEBUG_COMPOSE_ENTRYPOINT=1
@@ -292,13 +310,14 @@ script:
 
   - docker stop "$( docker ps | grep  "${MY_DOCKER_NAME}" | awk '{print $1}' )"
   - docker rm "${MY_DOCKER_NAME}"
+
   ##
   ## 05.) [b](SILENT) Mount database dir and re-use it
   ##
   # FIRST RUN
+  - /tmp/section.sh "05.) [b](SILENT) Mount database dir and re-use it"
   - docker run
       -p 127.0.0.1:3306:3306
-      -v /tmp/mysql-conf:/etc/mysql/conf.d
       -v /tmp/mysql-data:/var/lib/mysql
       -e MYSQL_SOCKET_DIR=/usr/local/mysqld-sock
       -e MYSQL_ROOT_PASSWORD=${MY_MYSQL_PASS}
@@ -315,7 +334,6 @@ script:
   # SECOND RUN
   - docker run
       -p 127.0.0.1:3306:3306
-      -v /tmp/mysql-conf:/etc/mysql/conf.d
       -v /tmp/mysql-data:/var/lib/mysql
       -e MYSQL_SOCKET_DIR=/usr/local/mysqld-sock
       -e DEBUG_COMPOSE_ENTRYPOINT=1
