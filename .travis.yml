@@ -155,7 +155,7 @@ script:
   ##
   ## 03.) [a](DEBUG) With config overwrite
   ##
-  - printf "[mysqld]\n%s\n" "innodb-buffer-pool-size = 500M" > /tmp/mysql-conf/buffer.cnf
+  - printf "[mysqld]\n%s\n" "innodb-buffer-pool-size = 524288000" > /tmp/mysql-conf/buffer.cnf
 
   - docker run
       -p 127.0.0.1:3306:3306
@@ -180,7 +180,7 @@ script:
   ##
   ## 03.) [a](SILENT) With config overwrite
   ##
-  - printf "[mysqld]\n%s\n" "innodb-buffer-pool-size = 500M" > /tmp/mysql-conf/buffer.cnf
+  - printf "[mysqld]\n%s\n" "innodb-buffer-pool-size = 524288000" > /tmp/mysql-conf/buffer.cnf
 
   - docker run
       -p 127.0.0.1:3306:3306
