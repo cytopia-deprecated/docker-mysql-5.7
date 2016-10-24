@@ -155,7 +155,7 @@ script:
   ##
   ## 03.) [a](DEBUG) With config overwrite
   ##
-  - printf "[mysqld]\n%s\n" "innodb-buffer-pool-size = 524288000" > /tmp/mysql-conf/buffer.cnf
+  - printf "[mysqld]\n%s\n" "innodb-buffer-pool-size = 536870912" > /tmp/mysql-conf/buffer.cnf
 
   - docker run
       -p 127.0.0.1:3306:3306
@@ -173,14 +173,14 @@ script:
   - mysql --user=root --password=${MY_MYSQL_PASS} --host=127.0.0.1 -e "SHOW VARIABLES WHERE Variable_name LIKE '%innodb%buffer%pool%size%';"
 
   # Validate configuration file
-  - mysql --user=root --password=${MY_MYSQL_PASS} --host=127.0.0.1 -e "SHOW VARIABLES WHERE Variable_name LIKE '%innodb%buffer%pool%size%';" | grep '524288000'
+  - mysql --user=root --password=${MY_MYSQL_PASS} --host=127.0.0.1 -e "SHOW VARIABLES WHERE Variable_name LIKE '%innodb%buffer%pool%size%';" | grep '536870912'
 
   - docker stop "$( docker ps | grep  "${MY_DOCKER_NAME}" | awk '{print $1}' )"
   - docker rm "${MY_DOCKER_NAME}"
   ##
   ## 03.) [a](SILENT) With config overwrite
   ##
-  - printf "[mysqld]\n%s\n" "innodb-buffer-pool-size = 524288000" > /tmp/mysql-conf/buffer.cnf
+  - printf "[mysqld]\n%s\n" "innodb-buffer-pool-size = 536870912" > /tmp/mysql-conf/buffer.cnf
 
   - docker run
       -p 127.0.0.1:3306:3306
@@ -197,7 +197,7 @@ script:
   - mysql --user=root --password=${MY_MYSQL_PASS} --host=127.0.0.1 -e "SHOW VARIABLES WHERE Variable_name LIKE '%innodb%buffer%pool%size%';"
 
   # Validate configuration file
-  - mysql --user=root --password=${MY_MYSQL_PASS} --host=127.0.0.1 -e "SHOW VARIABLES WHERE Variable_name LIKE '%innodb%buffer%pool%size%';" | grep '524288000'
+  - mysql --user=root --password=${MY_MYSQL_PASS} --host=127.0.0.1 -e "SHOW VARIABLES WHERE Variable_name LIKE '%innodb%buffer%pool%size%';" | grep '536870912'
 
   - docker stop "$( docker ps | grep  "${MY_DOCKER_NAME}" | awk '{print $1}' )"
   - docker rm "${MY_DOCKER_NAME}"
