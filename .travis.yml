@@ -142,9 +142,9 @@ script:
   - docker rm "${MY_DOCKER_NAME}"
 
   ##
-  ## 02.) [a](SILENT) With logging
+  ## 02.) [b](SILENT) With logging
   ##
-  - /tmp/section.sh "02.) [a](SILENT) With logging"
+  - /tmp/section.sh "02.) [b](SILENT) With logging"
   - docker run
       -p 127.0.0.1:3306:3306
       -v /tmp/mysql-log:/var/log/mysql
@@ -205,9 +205,9 @@ script:
   - rm -f /tmp/mysql-conf/buffer.cnf
 
   ##
-  ## 03.) [a](SILENT) With config overwrite
+  ## 03.) [b](SILENT) With config overwrite
   ##
-  - /tmp/section.sh "03.) [a](SILENT) With config overwrite"
+  - /tmp/section.sh "03.) [b](SILENT) With config overwrite"
   - printf "[mysqld]\n%s\n" "innodb-buffer-pool-size = 536870912" > /tmp/mysql-conf/buffer.cnf
 
   - docker run
@@ -287,6 +287,7 @@ script:
 
   - docker stop "$( docker ps | grep  "${MY_DOCKER_NAME}" | awk '{print $1}' )"
   - docker rm "${MY_DOCKER_NAME}"
+  - rm -rf /tmp/mysql-data/*
 
 
 
@@ -368,3 +369,4 @@ script:
 
   - docker stop "$( docker ps | grep  "${MY_DOCKER_NAME}" | awk '{print $1}' )"
   - docker rm "${MY_DOCKER_NAME}"
+  - rm -rf /tmp/mysql-data/*
