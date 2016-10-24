@@ -67,7 +67,7 @@ script:
   - mysql --user=root --password=${MY_MYSQL_PASS} --host=127.0.0.1 -e "SHOW DATABASES;"
   - mysql --user=root --password=${MY_MYSQL_PASS} --host=127.0.0.1 -e "SHOW VARIABLES WHERE Variable_name LIKE '%socket%';"
   - mysql --user=root --password=${MY_MYSQL_PASS} --host=127.0.0.1 -e "SHOW VARIABLES WHERE Variable_name LIKE '%general%log%';"
-  - mysql --user=root --password=${MY_MYSQL_PASS} --host=127.0.0.1 -e "SHOW VARIABLES WHERE Variable_name LIKE '%key%buffer%';"
+  - mysql --user=root --password=${MY_MYSQL_PASS} --host=127.0.0.1 -e "SHOW VARIABLES WHERE Variable_name LIKE '%innodb%buffer%pool%size%';"
 
 
   - docker stop "$( docker ps | grep  "${MY_DOCKER_NAME}" | awk '{print $1}' )"
@@ -86,7 +86,7 @@ script:
   - mysql --user=root --password=${MY_MYSQL_PASS} --host=127.0.0.1 -e "SHOW DATABASES;"
   - mysql --user=root --password=${MY_MYSQL_PASS} --host=127.0.0.1 -e "SHOW VARIABLES WHERE Variable_name LIKE '%socket%';"
   - mysql --user=root --password=${MY_MYSQL_PASS} --host=127.0.0.1 -e "SHOW VARIABLES WHERE Variable_name LIKE '%general%log%';"
-  - mysql --user=root --password=${MY_MYSQL_PASS} --host=127.0.0.1 -e "SHOW VARIABLES WHERE Variable_name LIKE '%key%buffer%';"
+  - mysql --user=root --password=${MY_MYSQL_PASS} --host=127.0.0.1 -e "SHOW VARIABLES WHERE Variable_name LIKE '%innodb%buffer%pool%size%';"
 
   - docker stop "$( docker ps | grep  "${MY_DOCKER_NAME}" | awk '{print $1}' )"
   - docker rm "${MY_DOCKER_NAME}"
@@ -110,14 +110,14 @@ script:
   - mysql --user=root --password=${MY_MYSQL_PASS} --host=127.0.0.1 -e "SHOW DATABASES;"
   - mysql --user=root --password=${MY_MYSQL_PASS} --host=127.0.0.1 -e "SHOW VARIABLES WHERE Variable_name LIKE '%socket%';"
   - mysql --user=root --password=${MY_MYSQL_PASS} --host=127.0.0.1 -e "SHOW VARIABLES WHERE Variable_name LIKE '%general%log%';"
-  - mysql --user=root --password=${MY_MYSQL_PASS} --host=127.0.0.1 -e "SHOW VARIABLES WHERE Variable_name LIKE '%key%buffer%';"
+  - mysql --user=root --password=${MY_MYSQL_PASS} --host=127.0.0.1 -e "SHOW VARIABLES WHERE Variable_name LIKE '%innodb%buffer%pool%size%';"
 
   # Validate log file
   - mysql --user=root --password=${MY_MYSQL_PASS} --host=127.0.0.1 -e "SHOW VARIABLES WHERE Variable_name LIKE '%general%log%';" | grep 'ON'
 
   - ls -la /tmp/mysql-log
-  - tail -200 /tmp/mysql-log/error.log
-  - tail -200 /tmp/mysql-log/mysql.log
+  - tail -10 /tmp/mysql-log/error.log
+  - tail -10 /tmp/mysql-log/mysql.log
 
   - docker stop "$( docker ps | grep  "${MY_DOCKER_NAME}" | awk '{print $1}' )"
   - docker rm "${MY_DOCKER_NAME}"
@@ -137,14 +137,14 @@ script:
   - mysql --user=root --password=${MY_MYSQL_PASS} --host=127.0.0.1 -e "SHOW DATABASES;"
   - mysql --user=root --password=${MY_MYSQL_PASS} --host=127.0.0.1 -e "SHOW VARIABLES WHERE Variable_name LIKE '%socket%';"
   - mysql --user=root --password=${MY_MYSQL_PASS} --host=127.0.0.1 -e "SHOW VARIABLES WHERE Variable_name LIKE '%general%log%';"
-  - mysql --user=root --password=${MY_MYSQL_PASS} --host=127.0.0.1 -e "SHOW VARIABLES WHERE Variable_name LIKE '%key%buffer%';"
+  - mysql --user=root --password=${MY_MYSQL_PASS} --host=127.0.0.1 -e "SHOW VARIABLES WHERE Variable_name LIKE '%innodb%buffer%pool%size%';"
 
   # Validate log file
   - mysql --user=root --password=${MY_MYSQL_PASS} --host=127.0.0.1 -e "SHOW VARIABLES WHERE Variable_name LIKE '%general%log%';" | grep 'ON'
 
   - ls -la /tmp/mysql-log
-  - tail -200 /tmp/mysql-log/error.log
-  - tail -200 /tmp/mysql-log/mysql.log
+  - tail -10 /tmp/mysql-log/error.log
+  - tail -10 /tmp/mysql-log/mysql.log
 
   - docker stop "$( docker ps | grep  "${MY_DOCKER_NAME}" | awk '{print $1}' )"
   - docker rm "${MY_DOCKER_NAME}"
@@ -155,7 +155,7 @@ script:
   ##
   ## 03.) [a](DEBUG) With config overwrite
   ##
-  - printf "[mysqld]\n%s\n" "key_buffer = 500M" > /tmp/mysql-conf/buffer.cnf
+  - printf "[mysqld]\n%s\n" "innodb-buffer-pool-size = 500M" > /tmp/mysql-conf/buffer.cnf
 
   - docker run
       -p 127.0.0.1:3306:3306
@@ -170,17 +170,17 @@ script:
   - mysql --user=root --password=${MY_MYSQL_PASS} --host=127.0.0.1 -e "SHOW DATABASES;"
   - mysql --user=root --password=${MY_MYSQL_PASS} --host=127.0.0.1 -e "SHOW VARIABLES WHERE Variable_name LIKE '%socket%';"
   - mysql --user=root --password=${MY_MYSQL_PASS} --host=127.0.0.1 -e "SHOW VARIABLES WHERE Variable_name LIKE '%general%log%';"
-  - mysql --user=root --password=${MY_MYSQL_PASS} --host=127.0.0.1 -e "SHOW VARIABLES WHERE Variable_name LIKE '%key%buffer%';"
+  - mysql --user=root --password=${MY_MYSQL_PASS} --host=127.0.0.1 -e "SHOW VARIABLES WHERE Variable_name LIKE '%innodb%buffer%pool%size%';"
 
   # Validate configuration file
-  - mysql --user=root --password=${MY_MYSQL_PASS} --host=127.0.0.1 -e "SHOW VARIABLES WHERE Variable_name LIKE '%key%buffer%';" | grep '524288000'
+  - mysql --user=root --password=${MY_MYSQL_PASS} --host=127.0.0.1 -e "SHOW VARIABLES WHERE Variable_name LIKE '%innodb%buffer%pool%size%';" | grep '524288000'
 
   - docker stop "$( docker ps | grep  "${MY_DOCKER_NAME}" | awk '{print $1}' )"
   - docker rm "${MY_DOCKER_NAME}"
   ##
   ## 03.) [a](SILENT) With config overwrite
   ##
-  - printf "[mysqld]\n%s\n" "key_buffer = 500M" > /tmp/mysql-conf/buffer.cnf
+  - printf "[mysqld]\n%s\n" "innodb-buffer-pool-size = 500M" > /tmp/mysql-conf/buffer.cnf
 
   - docker run
       -p 127.0.0.1:3306:3306
@@ -194,10 +194,10 @@ script:
   - mysql --user=root --password=${MY_MYSQL_PASS} --host=127.0.0.1 -e "SHOW DATABASES;"
   - mysql --user=root --password=${MY_MYSQL_PASS} --host=127.0.0.1 -e "SHOW VARIABLES WHERE Variable_name LIKE '%socket%';"
   - mysql --user=root --password=${MY_MYSQL_PASS} --host=127.0.0.1 -e "SHOW VARIABLES WHERE Variable_name LIKE '%general%log%';"
-  - mysql --user=root --password=${MY_MYSQL_PASS} --host=127.0.0.1 -e "SHOW VARIABLES WHERE Variable_name LIKE '%key%buffer%';"
+  - mysql --user=root --password=${MY_MYSQL_PASS} --host=127.0.0.1 -e "SHOW VARIABLES WHERE Variable_name LIKE '%innodb%buffer%pool%size%';"
 
   # Validate configuration file
-  - mysql --user=root --password=${MY_MYSQL_PASS} --host=127.0.0.1 -e "SHOW VARIABLES WHERE Variable_name LIKE '%key%buffer%';" | grep '524288000'
+  - mysql --user=root --password=${MY_MYSQL_PASS} --host=127.0.0.1 -e "SHOW VARIABLES WHERE Variable_name LIKE '%innodb%buffer%pool%size%';" | grep '524288000'
 
   - docker stop "$( docker ps | grep  "${MY_DOCKER_NAME}" | awk '{print $1}' )"
   - docker rm "${MY_DOCKER_NAME}"
@@ -221,7 +221,7 @@ script:
   - mysql --user=root --password=${MY_MYSQL_PASS} --host=127.0.0.1 -e "SHOW DATABASES;"
   - mysql --user=root --password=${MY_MYSQL_PASS} --host=127.0.0.1 -e "SHOW VARIABLES WHERE Variable_name LIKE '%socket%';"
   - mysql --user=root --password=${MY_MYSQL_PASS} --host=127.0.0.1 -e "SHOW VARIABLES WHERE Variable_name LIKE '%general%log%';"
-  - mysql --user=root --password=${MY_MYSQL_PASS} --host=127.0.0.1 -e "SHOW VARIABLES WHERE Variable_name LIKE '%key%buffer%';"
+  - mysql --user=root --password=${MY_MYSQL_PASS} --host=127.0.0.1 -e "SHOW VARIABLES WHERE Variable_name LIKE '%innodb%buffer%pool%size%';"
 
   # Validate configuration file
   - mysql --user=root --password=${MY_MYSQL_PASS} --host=127.0.0.1 -e "SHOW VARIABLES WHERE Variable_name LIKE '%socket%';" | grep '/usr/local/mysqld-sock/mysqld.sock'
@@ -244,7 +244,7 @@ script:
   - mysql --user=root --password=${MY_MYSQL_PASS} --host=127.0.0.1 -e "SHOW DATABASES;"
   - mysql --user=root --password=${MY_MYSQL_PASS} --host=127.0.0.1 -e "SHOW VARIABLES WHERE Variable_name LIKE '%socket%';"
   - mysql --user=root --password=${MY_MYSQL_PASS} --host=127.0.0.1 -e "SHOW VARIABLES WHERE Variable_name LIKE '%general%log%';"
-  - mysql --user=root --password=${MY_MYSQL_PASS} --host=127.0.0.1 -e "SHOW VARIABLES WHERE Variable_name LIKE '%key%buffer%';"
+  - mysql --user=root --password=${MY_MYSQL_PASS} --host=127.0.0.1 -e "SHOW VARIABLES WHERE Variable_name LIKE '%innodb%buffer%pool%size%';"
 
   # Validate configuration file
   - mysql --user=root --password=${MY_MYSQL_PASS} --host=127.0.0.1 -e "SHOW VARIABLES WHERE Variable_name LIKE '%socket%';" | grep '/usr/local/mysqld-sock/mysqld.sock'
