@@ -75,6 +75,8 @@ script:
   - docker ps
 
   - mysql --user=root --password=${MY_MYSQL_PASS} --host=127.0.0.1 -e "SHOW DATABASES;"
+  - mysql --user=root --password=${MY_MYSQL_PASS} --host=127.0.0.1 -e "CREATE DATABASE my-custom-database;"
+  - mysql --user=root --password=${MY_MYSQL_PASS} --host=127.0.0.1 -e "SHOW DATABASES;"
   - mysql --user=root --password=${MY_MYSQL_PASS} --host=127.0.0.1 -e "SHOW VARIABLES WHERE Variable_name LIKE '%socket%';"
   - mysql --user=root --password=${MY_MYSQL_PASS} --host=127.0.0.1 -e "SHOW VARIABLES WHERE Variable_name LIKE '%general%log%';"
   - mysql --user=root --password=${MY_MYSQL_PASS} --host=127.0.0.1 -e "SHOW VARIABLES WHERE Variable_name LIKE '%innodb%buffer%pool%size%';"
@@ -95,6 +97,8 @@ script:
 
   - docker ps
 
+  - mysql --user=root --password=${MY_MYSQL_PASS} --host=127.0.0.1 -e "SHOW DATABASES;"
+  - mysql --user=root --password=${MY_MYSQL_PASS} --host=127.0.0.1 -e "CREATE DATABASE my-custom-database;"
   - mysql --user=root --password=${MY_MYSQL_PASS} --host=127.0.0.1 -e "SHOW DATABASES;"
   - mysql --user=root --password=${MY_MYSQL_PASS} --host=127.0.0.1 -e "SHOW VARIABLES WHERE Variable_name LIKE '%socket%';"
   - mysql --user=root --password=${MY_MYSQL_PASS} --host=127.0.0.1 -e "SHOW VARIABLES WHERE Variable_name LIKE '%general%log%';"
@@ -120,6 +124,8 @@ script:
 
   - docker ps
 
+  - mysql --user=root --password=${MY_MYSQL_PASS} --host=127.0.0.1 -e "SHOW DATABASES;"
+  - mysql --user=root --password=${MY_MYSQL_PASS} --host=127.0.0.1 -e "CREATE DATABASE my-custom-database;"
   - mysql --user=root --password=${MY_MYSQL_PASS} --host=127.0.0.1 -e "SHOW DATABASES;"
   - mysql --user=root --password=${MY_MYSQL_PASS} --host=127.0.0.1 -e "SHOW VARIABLES WHERE Variable_name LIKE '%socket%';"
   - mysql --user=root --password=${MY_MYSQL_PASS} --host=127.0.0.1 -e "SHOW VARIABLES WHERE Variable_name LIKE '%general%log%';"
@@ -149,6 +155,8 @@ script:
 
   - docker ps
 
+  - mysql --user=root --password=${MY_MYSQL_PASS} --host=127.0.0.1 -e "SHOW DATABASES;"
+  - mysql --user=root --password=${MY_MYSQL_PASS} --host=127.0.0.1 -e "CREATE DATABASE my-custom-database;"
   - mysql --user=root --password=${MY_MYSQL_PASS} --host=127.0.0.1 -e "SHOW DATABASES;"
   - mysql --user=root --password=${MY_MYSQL_PASS} --host=127.0.0.1 -e "SHOW VARIABLES WHERE Variable_name LIKE '%socket%';"
   - mysql --user=root --password=${MY_MYSQL_PASS} --host=127.0.0.1 -e "SHOW VARIABLES WHERE Variable_name LIKE '%general%log%';"
@@ -184,6 +192,8 @@ script:
   - docker ps
 
   - mysql --user=root --password=${MY_MYSQL_PASS} --host=127.0.0.1 -e "SHOW DATABASES;"
+  - mysql --user=root --password=${MY_MYSQL_PASS} --host=127.0.0.1 -e "CREATE DATABASE my-custom-database;"
+  - mysql --user=root --password=${MY_MYSQL_PASS} --host=127.0.0.1 -e "SHOW DATABASES;"
   - mysql --user=root --password=${MY_MYSQL_PASS} --host=127.0.0.1 -e "SHOW VARIABLES WHERE Variable_name LIKE '%socket%';"
   - mysql --user=root --password=${MY_MYSQL_PASS} --host=127.0.0.1 -e "SHOW VARIABLES WHERE Variable_name LIKE '%general%log%';"
   - mysql --user=root --password=${MY_MYSQL_PASS} --host=127.0.0.1 -e "SHOW VARIABLES WHERE Variable_name LIKE '%innodb%buffer%pool%size%';"
@@ -210,6 +220,8 @@ script:
 
   - docker ps
 
+  - mysql --user=root --password=${MY_MYSQL_PASS} --host=127.0.0.1 -e "SHOW DATABASES;"
+  - mysql --user=root --password=${MY_MYSQL_PASS} --host=127.0.0.1 -e "CREATE DATABASE my-custom-database;"
   - mysql --user=root --password=${MY_MYSQL_PASS} --host=127.0.0.1 -e "SHOW DATABASES;"
   - mysql --user=root --password=${MY_MYSQL_PASS} --host=127.0.0.1 -e "SHOW VARIABLES WHERE Variable_name LIKE '%socket%';"
   - mysql --user=root --password=${MY_MYSQL_PASS} --host=127.0.0.1 -e "SHOW VARIABLES WHERE Variable_name LIKE '%general%log%';"
@@ -239,6 +251,8 @@ script:
   - docker ps
 
   - mysql --user=root --password=${MY_MYSQL_PASS} --host=127.0.0.1 -e "SHOW DATABASES;"
+  - mysql --user=root --password=${MY_MYSQL_PASS} --host=127.0.0.1 -e "CREATE DATABASE my-custom-database;"
+  - mysql --user=root --password=${MY_MYSQL_PASS} --host=127.0.0.1 -e "SHOW DATABASES;"
   - mysql --user=root --password=${MY_MYSQL_PASS} --host=127.0.0.1 -e "SHOW VARIABLES WHERE Variable_name LIKE '%socket%';"
   - mysql --user=root --password=${MY_MYSQL_PASS} --host=127.0.0.1 -e "SHOW VARIABLES WHERE Variable_name LIKE '%general%log%';"
   - mysql --user=root --password=${MY_MYSQL_PASS} --host=127.0.0.1 -e "SHOW VARIABLES WHERE Variable_name LIKE '%innodb%buffer%pool%size%';"
@@ -262,6 +276,8 @@ script:
 
   - docker ps
 
+  - mysql --user=root --password=${MY_MYSQL_PASS} --host=127.0.0.1 -e "SHOW DATABASES;"
+  - mysql --user=root --password=${MY_MYSQL_PASS} --host=127.0.0.1 -e "CREATE DATABASE my-custom-database;"
   - mysql --user=root --password=${MY_MYSQL_PASS} --host=127.0.0.1 -e "SHOW DATABASES;"
   - mysql --user=root --password=${MY_MYSQL_PASS} --host=127.0.0.1 -e "SHOW VARIABLES WHERE Variable_name LIKE '%socket%';"
   - mysql --user=root --password=${MY_MYSQL_PASS} --host=127.0.0.1 -e "SHOW VARIABLES WHERE Variable_name LIKE '%general%log%';"
@@ -293,6 +309,7 @@ script:
 
   - mysql --user=root --password=${MY_MYSQL_PASS} --host=127.0.0.1 -e "SHOW DATABASES;"
   - mysql --user=root --password=${MY_MYSQL_PASS} --host=127.0.0.1 -e "CREATE DATABASE my-custom-database;"
+  - mysql --user=root --password=${MY_MYSQL_PASS} --host=127.0.0.1 -e "SHOW DATABASES;"
 
   - docker stop "$( docker ps | grep  "${MY_DOCKER_NAME}" | awk '{print $1}' )"
   - docker rm "${MY_DOCKER_NAME}"
@@ -308,6 +325,7 @@ script:
 
   - docker ps
 
+  - mysql --user=root --password=${MY_MYSQL_PASS} --host=127.0.0.1 -e "SHOW DATABASES;"
   - mysql --user=root --password=${MY_MYSQL_PASS} --host=127.0.0.1 -e "SHOW DATABASES;" | grep 'my-custom-database'
 
   - docker stop "$( docker ps | grep  "${MY_DOCKER_NAME}" | awk '{print $1}' )"
@@ -330,6 +348,7 @@ script:
 
   - mysql --user=root --password=${MY_MYSQL_PASS} --host=127.0.0.1 -e "SHOW DATABASES;"
   - mysql --user=root --password=${MY_MYSQL_PASS} --host=127.0.0.1 -e "CREATE DATABASE my-custom-database;"
+  - mysql --user=root --password=${MY_MYSQL_PASS} --host=127.0.0.1 -e "SHOW DATABASES;"
 
   - docker stop "$( docker ps | grep  "${MY_DOCKER_NAME}" | awk '{print $1}' )"
   - docker rm "${MY_DOCKER_NAME}"
@@ -345,6 +364,7 @@ script:
 
   - docker ps
 
+  - mysql --user=root --password=${MY_MYSQL_PASS} --host=127.0.0.1 -e "SHOW DATABASES;"
   - mysql --user=root --password=${MY_MYSQL_PASS} --host=127.0.0.1 -e "SHOW DATABASES;" | grep 'my-custom-database'
 
   - docker stop "$( docker ps | grep  "${MY_DOCKER_NAME}" | awk '{print $1}' )"
