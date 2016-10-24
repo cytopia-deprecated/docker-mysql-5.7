@@ -36,7 +36,8 @@ install:
   - mkdir -p /tmp/mysql-log
   - mkdir -p /tmp/mysql-sock
   - mkdir -p /tmp/mysql-conf
-  - mkdir -p /tmp/mysql-data
+  - mkdir -p /tmp/mysql-data1
+  - mkdir -p /tmp/mysql-data2
 
   # Pre-create logfiles
   - touch /tmp/mysql-log/error.log
@@ -46,7 +47,8 @@ install:
   - chmod -R 777 /tmp/mysql-log
   - chmod -R 777 /tmp/mysql-sock
   - chmod -R 777 /tmp/mysql-conf
-  - chmod -R 777 /tmp/mysql-data
+  - chmod -R 777 /tmp/mysql-data1
+  - chmod -R 777 /tmp/mysql-data1
 
   # Show Docker version
   - docker version
@@ -297,7 +299,7 @@ script:
   - /tmp/section.sh "05.) [a](DEBUG) Mount database dir and re-use it"
   - docker run
       -p 127.0.0.1:3306:3306
-      -v /tmp/mysql-data:/var/lib/mysql
+      -v /tmp/mysql-data1:/var/lib/mysql
       -e MYSQL_SOCKET_DIR=/usr/local/mysqld-sock
       -e DEBUG_COMPOSE_ENTRYPOINT=1
       -e MYSQL_ROOT_PASSWORD=${MY_MYSQL_PASS}
@@ -315,7 +317,7 @@ script:
   # SECOND RUN
   - docker run
       -p 127.0.0.1:3306:3306
-      -v /tmp/mysql-data:/var/lib/mysql
+      -v /tmp/mysql-data1:/var/lib/mysql
       -e MYSQL_SOCKET_DIR=/usr/local/mysqld-sock
       -e DEBUG_COMPOSE_ENTRYPOINT=1
       -e MYSQL_ROOT_PASSWORD=${MY_MYSQL_PASS}
@@ -329,7 +331,6 @@ script:
 
   - docker stop "$( docker ps | grep  "${MY_DOCKER_NAME}" | awk '{print $1}' )"
   - docker rm "${MY_DOCKER_NAME}"
-  - rm -rf /tmp/mysql-data/*
 
   ##
   ## 05.) [b](SILENT) Mount database dir and re-use it
@@ -338,7 +339,7 @@ script:
   - /tmp/section.sh "05.) [b](SILENT) Mount database dir and re-use it"
   - docker run
       -p 127.0.0.1:3306:3306
-      -v /tmp/mysql-data:/var/lib/mysql
+      -v /tmp/mysql-data2:/var/lib/mysql
       -e MYSQL_SOCKET_DIR=/usr/local/mysqld-sock
       -e MYSQL_ROOT_PASSWORD=${MY_MYSQL_PASS}
       --name ${MY_DOCKER_NAME} cytopia/${MY_DOCKER_NAME} &
@@ -355,7 +356,7 @@ script:
   # SECOND RUN
   - docker run
       -p 127.0.0.1:3306:3306
-      -v /tmp/mysql-data:/var/lib/mysql
+      -v /tmp/mysql-data2:/var/lib/mysql
       -e MYSQL_SOCKET_DIR=/usr/local/mysqld-sock
       -e DEBUG_COMPOSE_ENTRYPOINT=1
       -e MYSQL_ROOT_PASSWORD=${MY_MYSQL_PASS}
@@ -369,4 +370,3 @@ script:
 
   - docker stop "$( docker ps | grep  "${MY_DOCKER_NAME}" | awk '{print $1}' )"
   - docker rm "${MY_DOCKER_NAME}"
-  - rm -rf /tmp/mysql-data/*
