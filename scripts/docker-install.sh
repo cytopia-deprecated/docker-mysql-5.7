@@ -155,3 +155,9 @@ run "yum -y autoremove"
 print_headline "7. Fix Cleanup"
 run "yum -y install hostname" # required for mysql_install_db
 
+
+###
+### Clear caches
+###
+print_headline "8. Clear caches"
+run "yum clean all"

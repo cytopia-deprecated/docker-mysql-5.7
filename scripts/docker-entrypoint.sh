@@ -271,7 +271,7 @@ else
 
 	# Shutdown MySQL
 	log "info" "Shutting down MySQL."
-	kill -s TERM "$pid"
+	run "kill -s TERM ${pid}"
 	i=0
 	max=60
 	while [ $i -lt $max ]; do
