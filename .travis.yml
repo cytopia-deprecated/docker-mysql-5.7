@@ -57,6 +57,16 @@ install:
   - docker build -t cytopia/${MY_DOCKER_NAME} .
 
 
+before_script:
+
+  # Disable services enabled by default
+  # http://docs.travis-ci.com/user/database-setup/#MySQL
+  - sudo /etc/init.d/mysql stop
+  - sudo /etc/init.d/postgresql stop
+  # The following did not work reliable
+  # - sudo service mysql stop
+  # - sudo service postgresql stop
+
 
 ###
 ### Test
@@ -108,7 +118,6 @@ script:
 
   - docker stop "$( docker ps | grep  "${MY_DOCKER_NAME}" | awk '{print $1}' )"
   - docker rm "${MY_DOCKER_NAME}"
-
 
 
   ################################################################################
@@ -175,7 +184,6 @@ script:
   - docker rm "${MY_DOCKER_NAME}"
 
 
-
   ################################################################################
   ## 03.) [a](DEBUG) With config overwrite
   ################################################################################
@@ -236,7 +244,6 @@ script:
   - rm -f /tmp/mysql-conf/buffer.cnf
 
 
-
   ################################################################################
   ## 04.) [a](DEBUG) Change socket path
   ################################################################################
@@ -289,7 +296,6 @@ script:
 
   - docker stop "$( docker ps | grep  "${MY_DOCKER_NAME}" | awk '{print $1}' )"
   - docker rm "${MY_DOCKER_NAME}"
-
 
 
   ################################################################################
