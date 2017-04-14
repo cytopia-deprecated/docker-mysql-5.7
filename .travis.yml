@@ -63,9 +63,6 @@ before_script:
   # http://docs.travis-ci.com/user/database-setup/#MySQL
   - sudo /etc/init.d/mysql stop
   - sudo /etc/init.d/postgresql stop
-  # The following did not work reliable
-  # - sudo service mysql stop
-  # - sudo service postgresql stop
 
 
 ###
