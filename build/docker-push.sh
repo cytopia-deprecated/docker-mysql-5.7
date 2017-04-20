@@ -1,31 +1,43 @@
 #!/bin/sh -eu
 
+
+###
+### Globals
+###
+CWD="$(cd -P -- "$(dirname -- "$0")" && pwd -P)/.."
+
+
+###
+### Checks
+###
+
 # Check Dockerfile
-if [ ! -f "Dockerfile" ]; then
-	echo "Dockerfile not found."
+if [ ! -f "${CWD}/Dockerfile" ]; then
+	echo "Dockerfile not found in: ${CWD}/Dockerfile."
 	exit 1
 fi
 
 # Get docker Name
-if ! grep -q 'image=".*"' Dockerfile > /dev/null 2>&1; then
+if ! grep -q 'image=".*"' "${CWD}/Dockerfile" > /dev/null 2>&1; then
 	echo "No 'image' LABEL found"
 	exit
 fi
-NAME="$( grep 'image=".*"' Dockerfile | sed 's/^[[:space:]]*//g' | awk -F'"' '{print $2}' )"
+NAME="$( grep 'image=".*"' "${CWD}/Dockerfile" | sed 's/^[[:space:]]*//g' | awk -F'"' '{print $2}' )"
 
 
-
+###
+### Docker hub variables
+###
 USR="cytopia"
 IMG="${USR}/${NAME}"
 REG="https://index.docker.io/v1/"
-
 
 
 ##
 ## Functions
 ##
 get_docker_id() {
-	_did="$( docker images | grep "${IMG}" | grep "latest" | awk '{print $3}' )"
+	_did="$( docker images | grep "${IMG}\s" | grep "latest" | awk '{print $3}' )"
 	echo "${_did}"
 }
 is_logged_in() {
@@ -41,7 +53,6 @@ is_logged_in() {
 }
 run() {
 	_cmd="${1}"
-
 	_red="\033[0;31m"
 	_green="\033[0;32m"
 	_reset="\033[0m"
@@ -62,4 +73,3 @@ if ! is_logged_in; then
 	run "docker login"
 fi
 run "docker push ${IMG}"
-

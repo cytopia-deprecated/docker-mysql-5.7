@@ -1,6 +1,6 @@
 # MySQL 5.7 Docker
 
-[![Build Status](https://travis-ci.org/cytopia/docker-mysql-5.7.svg?branch=master)](https://travis-ci.org/cytopia/docker-mysql-5.7) [![](https://images.microbadger.com/badges/version/cytopia/mysql-5.7.svg)](https://microbadger.com/images/cytopia/mysql-5.7 "mysql-5.7") [![](https://images.microbadger.com/badges/image/cytopia/mysql-5.7.svg)](https://microbadger.com/images/cytopia/mysql-5.7 "mysql-5.7") [![](https://images.microbadger.com/badges/license/cytopia/mysql-5.7.svg)](https://microbadger.com/images/cytopia/mysql-5.7 "mysql-5.7")
+<small>**Latest build:** 2017-04-20</small>
 
 [![cytopia/mysql-5.7](http://dockeri.co/image/cytopia/mysql-5.7)](https://hub.docker.com/r/cytopia/mysql-5.7/)
 
@@ -113,6 +113,12 @@ Configuration files inside this docker are read in the following order:
 | Order | File | Description |
 |-------|------|-------------|
 | 1     | `/etc/my.cnf` | Operating system default |
-| 2     | `/etc/mysql/my.cnf` | Operating system default |
-| 3     | `/etc/mysql/docker-default.d/*.cnf` | Alters additional settings via this dockers optional environmental variables (`socket` and `general_log`) |
-| 4     | `/etc/mysql/conf.d/` | Can be mounted to provide custom `*.cnf` files which can overwrite anything of the above. |
+| 2     | `/etc/mysql/conf.d/` | Custom configuration (level 1). Can be mounted to provide custom `*.cnf` files which can overwrite anything of the above. (used by the devilbox for its base configuration) |
+| 3     | `/etc/mysql/docker-default.d/*.cnf` | Custom configuration (level 2). Can be mounted to provide custom `*.cnf` files which can overwrite anything of the above. (used by the devilbox to allow custom user-defined configuration overwriting the default devilbox settings. |
+
+
+## Modules
+
+**[Version]**
+
+mysqld  Ver 5.7.18 for Linux on x86_64 (MySQL Community Server (GPL))
