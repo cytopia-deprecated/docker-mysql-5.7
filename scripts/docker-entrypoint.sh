@@ -223,6 +223,7 @@ run "chmod 0775 ${MYSQL_DEF_LOG}"
 run "chmod 0775 ${MYSQL_DEF_PID}"
 run "chmod 0775 ${MYSQL_DEF_SCK}"
 
+run "find ${MYSQL_DEF_LOG}/ -type f -exec chmod 0664 {} \;"
 
 # Directory already exists and has content (other thab '.' and '..')
 if [ -d "${DB_DATA_DIR}/mysql" ] && [ "$( ls -A "${DB_DATA_DIR}/mysql" )" ]; then
