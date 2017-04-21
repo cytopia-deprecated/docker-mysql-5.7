@@ -38,7 +38,7 @@ ENV MYSQL_DEF_SCK="/var/sock/mysqld"
 ###
 ### Install
 ###
-RUN groupadd -g ${MY_GID} -r ${MY_GROUP} &&\
+RUN groupadd -g ${MY_GID} -r ${MY_GROUP} && \
 	adduser ${MY_USER} -u ${MY_UID} -M -s /sbin/nologin -g ${MY_GROUP}
 
 RUN \
