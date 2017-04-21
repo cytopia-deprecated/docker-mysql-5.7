@@ -34,9 +34,9 @@ ENV MYSQL_DEF_LOG="/var/log/mysql"
 ENV MYSQL_DEF_PID="/var/run/mysqld"
 ENV MYSQL_DEF_SCK="/var/sock/mysqld"
 
-ENV MYSQ_LOG_SLOW="${MYSQL_DEF_LOG}/slow.log"
-ENV MYSQ_LOG_ERROR="${MYSQL_DEF_LOG}/error.log"
-ENV MYSQ_LOG_QUERY="${MYSQL_DEF_LOG}/query.log"
+ENV MYSQL_LOG_SLOW="${MYSQL_DEF_LOG}/slow.log"
+ENV MYSQL_LOG_ERROR="${MYSQL_DEF_LOG}/error.log"
+ENV MYSQL_LOG_QUERY="${MYSQL_DEF_LOG}/query.log"
 
 ###
 ### Install
