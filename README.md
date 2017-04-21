@@ -45,6 +45,7 @@
 | /var/log/mysql | MySQL log dir |
 | /var/sock/mysqld | MySQL socket dir |
 | /etc/mysql/conf.d | MySQL configuration directory (used to overwrite MySQL config) |
+| /etc/mysql/docker-default.d | MySQL configuration directory (used to overwrite MySQL config) |
 
 ### Default ports
 
