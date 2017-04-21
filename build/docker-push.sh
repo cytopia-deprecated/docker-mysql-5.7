@@ -37,7 +37,7 @@ REG="https://index.docker.io/v1/"
 ## Functions
 ##
 get_docker_id() {
-	_did="$( docker images | grep "${IMG}\s" | grep "latest" | awk '{print $3}' )"
+	_did="$( docker images | grep "${IMG}\s" | grep "\slatest\s" | awk '{print $3}' )"
 	echo "${_did}"
 }
 is_logged_in() {
