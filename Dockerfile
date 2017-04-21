@@ -64,6 +64,13 @@ RUN \
 ## Configure
 ##
 RUN \
+	rm -rf ${MYSQL_INCL} && \
+	rm -rf ${MYSQL_CUST_INCL} && \
+	rm -rf ${MYSQL_DEF_DAT} && \
+	rm -rf ${MYSQL_DEF_SCK} && \
+	rm -rf ${MYSQL_DEF_PID} && \
+	rm -rf ${MYSQL_DEF_LOG} && \
+	\
 	mkdir -p ${MYSQL_INCL} && \
 	mkdir -p ${MYSQL_CUST_INCL} && \
 	mkdir -p ${MYSQL_DEF_DAT} && \
