@@ -193,7 +193,7 @@ if set | grep "^MYSQL_SOCKET_DIR=" >/dev/null 2>&1; then
 
 	# Set socket permission
 	run "chown ${MY_USER}:${MY_GROUP} ${MYSQL_SOCKET_DIR}"
-	run "chmod 777 ${MYSQL_SOCKET_DIR}"
+	run "chmod 0777 ${MYSQL_SOCKET_DIR}"
 fi
 
 
@@ -211,6 +211,16 @@ DB_DATA_DIR="$( get_mysql_default_config "datadir" )"
 ##
 
 # Fixing permissions
+if [ ! -f "${MYSQL_LOG_QUERY}" ]; then
+	run "touch ${MYSQL_LOG_QUERY}"
+fi
+if [ ! -f "${MYSQL_LOG_SLOW}" ]; then
+	run "touch ${MYSQL_LOG_SLOW}"
+fi
+if [ ! -f "${MYSQL_LOG_ERROR}" ]; then
+	run "touch ${MYSQL_LOG_ERROR}"
+fi
+
 run "chown -R ${MY_USER}:${MY_GROUP} ${DB_DATA_DIR}"
 run "chown -R ${MY_USER}:${MY_GROUP} ${MYSQL_DEF_DAT}"
 run "chown -R ${MY_USER}:${MY_GROUP} ${MYSQL_DEF_LOG}"

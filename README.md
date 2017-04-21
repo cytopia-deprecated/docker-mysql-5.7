@@ -1,6 +1,8 @@
 # MySQL 5.7 Docker
 
-<small>**Latest build:** 2017-04-20</small>
+<small>**Latest build:** 2017-04-21</small>
+
+[![Build Status](https://travis-ci.org/cytopia/docker-mysql-5.7.svg?branch=master)](https://travis-ci.org/cytopia/docker-mysql-5.7) [![](https://images.microbadger.com/badges/version/cytopia/mysql-5.7.svg)](https://microbadger.com/images/cytopia/mysql-5.7 "mysql-5.7") [![](https://images.microbadger.com/badges/image/cytopia/mysql-5.7.svg)](https://microbadger.com/images/cytopia/mysql-5.7 "mysql-5.7") [![](https://images.microbadger.com/badges/license/cytopia/mysql-5.7.svg)](https://microbadger.com/images/cytopia/mysql-5.7 "mysql-5.7")
 
 [![cytopia/mysql-5.7](http://dockeri.co/image/cytopia/mysql-5.7)](https://hub.docker.com/r/cytopia/mysql-5.7/)
 

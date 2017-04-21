@@ -13,12 +13,17 @@ LABEL \
 	image="mysql-5.7" \
 	vendor="cytopia" \
 	license="MIT" \
-	build-date="2017-04-20"
+	build-date="2017-04-21"
 
 
 ###
 ### Envs
 ###
+
+# Version
+# Check for Updates:
+# https://dev.mysql.com/downloads/repo/yum/
+ENV YUM_REPO_URL="https://dev.mysql.com/get/mysql57-community-release-el7-10.noarch.rpm "
 
 # User/Group
 ENV MY_USER="mysql"
@@ -34,19 +39,23 @@ ENV MYSQL_DEF_LOG="/var/log/mysql"
 ENV MYSQL_DEF_PID="/var/run/mysqld"
 ENV MYSQL_DEF_SCK="/var/sock/mysqld"
 
+ENV MYSQL_LOG_SLOW="${MYSQL_DEF_LOG}/slow.log"
+ENV MYSQL_LOG_ERROR="${MYSQL_DEF_LOG}/error.log"
+ENV MYSQL_LOG_QUERY="${MYSQL_DEF_LOG}/query.log"
 
 ###
 ### Install
 ###
-RUN groupadd -g ${MY_GID} -r ${MY_GROUP} &&\
+RUN groupadd -g ${MY_GID} -r ${MY_GROUP} && \
 	adduser ${MY_USER} -u ${MY_UID} -M -s /sbin/nologin -g ${MY_GROUP}
 
 RUN \
 	yum -y install epel-release && \
-	rpm -ivh https://dev.mysql.com/get/mysql57-community-release-el7-9.noarch.rpm && \
+	rpm -ivh ${YUM_REPO_URL} && \
 	yum-config-manager --disable mysql55-community && \
 	yum-config-manager --disable mysql56-community && \
 	yum-config-manager --enable mysql57-community && \
+	yum-config-manager --disable mysql80-community && \
 	yum clean all
 
 RUN yum -y update && yum -y install \
@@ -64,6 +73,13 @@ RUN \
 ## Configure
 ##
 RUN \
+	rm -rf ${MYSQL_INCL} && \
+	rm -rf ${MYSQL_CUST_INCL} && \
+	rm -rf ${MYSQL_DEF_DAT} && \
+	rm -rf ${MYSQL_DEF_SCK} && \
+	rm -rf ${MYSQL_DEF_PID} && \
+	rm -rf ${MYSQL_DEF_LOG} && \
+	\
 	mkdir -p ${MYSQL_INCL} && \
 	mkdir -p ${MYSQL_CUST_INCL} && \
 	mkdir -p ${MYSQL_DEF_DAT} && \
@@ -101,9 +117,9 @@ RUN \
 	echo "bind-address = 0.0.0.0"                          >> /etc/my.cnf && \
 	echo "socket = ${MYSQL_DEF_SCK}/mysqld.sock"           >> /etc/my.cnf && \
 	echo "pid-file = ${MYSQL_DEF_PID}/mysqld.pid"          >> /etc/my.cnf && \
-	echo "general_log_file = ${MYSQL_DEF_LOG}/mysql.log"   >> /etc/my.cnf && \
-	echo "slow_query_log_file = ${MYSQL_DEF_LOG}/slow.log" >> /etc/my.cnf && \
-	echo "log-error = ${MYSQL_DEF_LOG}/error.log"          >> /etc/my.cnf && \
+	echo "general_log_file = ${MYSQL_LOG_QUERY}"           >> /etc/my.cnf && \
+	echo "slow_query_log_file = ${MYSQL_LOG_SLOW}"         >> /etc/my.cnf && \
+	echo "log-error = ${MYSQL_LOG_ERROR}"                  >> /etc/my.cnf && \
 	echo "!includedir ${MYSQL_INCL}/"                      >> /etc/my.cnf && \
 	echo "!includedir ${MYSQL_CUST_INCL}/"                 >> /etc/my.cnf
 
