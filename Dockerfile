@@ -55,6 +55,7 @@ RUN \
 	yum-config-manager --disable mysql55-community && \
 	yum-config-manager --disable mysql56-community && \
 	yum-config-manager --enable mysql57-community && \
+	yum-config-manager --disable mysql80-community && \
 	yum clean all
 
 RUN yum -y update && yum -y install \
