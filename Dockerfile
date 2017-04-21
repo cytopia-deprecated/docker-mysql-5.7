@@ -13,12 +13,17 @@ LABEL \
 	image="mysql-5.7" \
 	vendor="cytopia" \
 	license="MIT" \
-	build-date="2017-04-20"
+	build-date="2017-04-21"
 
 
 ###
 ### Envs
 ###
+
+# Version
+# Check for Updates:
+# https://dev.mysql.com/downloads/repo/yum/
+ENV YUM_REPO_URL="https://dev.mysql.com/get/mysql57-community-release-el7-10.noarch.rpm "
 
 # User/Group
 ENV MY_USER="mysql"
@@ -46,7 +51,7 @@ RUN groupadd -g ${MY_GID} -r ${MY_GROUP} && \
 
 RUN \
 	yum -y install epel-release && \
-	rpm -ivh https://dev.mysql.com/get/mysql57-community-release-el7-9.noarch.rpm && \
+	rpm -ivh ${YUM_REPO_URL} && \
 	yum-config-manager --disable mysql55-community && \
 	yum-config-manager --disable mysql56-community && \
 	yum-config-manager --enable mysql57-community && \
