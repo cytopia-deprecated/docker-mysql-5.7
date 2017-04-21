@@ -388,7 +388,7 @@ script:
   - sleep 30
   - docker-compose logs
   - docker-compose ps
-  - _broken="$( docker-compose ps | grep -c 'Exit' || echo 0 )"
+  - _broken="$( docker-compose ps | grep -c 'Exit' || true )"
   - _running="$( docker-compose ps | grep -c 'Up' )"
   - _total="$( docker-compose ps -q | grep -c '' )"
   - if [ "${_broken}" != "0" ]; then false; fi
