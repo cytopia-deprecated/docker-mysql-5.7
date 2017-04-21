@@ -211,14 +211,14 @@ DB_DATA_DIR="$( get_mysql_default_config "datadir" )"
 ##
 
 # Fixing permissions
-if [ ! -f "${MYSQL_DEF_LOG}/mysql.log" ]; then
-	run "touch ${MYSQL_DEF_LOG}/mysql.log"
+if [ ! -f "${MYSQL_LOG_QUERY}" ]; then
+	run "touch ${MYSQL_LOG_QUERY}"
 fi
-if [ ! -f "${MYSQL_DEF_LOG}/slow.log" ]; then
-	run "touch ${MYSQL_DEF_LOG}/slow.log"
+if [ ! -f "${MYSQL_LOG_SLOW}" ]; then
+	run "touch ${MYSQL_LOG_SLOW}"
 fi
-if [ ! -f "${MYSQL_DEF_LOG}/error.log" ]; then
-	run "touch ${MYSQL_DEF_LOG}/error.log"
+if [ ! -f "${MYSQL_LOG_ERROR}" ]; then
+	run "touch ${MYSQL_LOG_ERROR}"
 fi
 
 run "chown -R ${MY_USER}:${MY_GROUP} ${DB_DATA_DIR}"

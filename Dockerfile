@@ -34,6 +34,9 @@ ENV MYSQL_DEF_LOG="/var/log/mysql"
 ENV MYSQL_DEF_PID="/var/run/mysqld"
 ENV MYSQL_DEF_SCK="/var/sock/mysqld"
 
+ENV MYSQ_LOG_SLOW="${MYSQL_DEF_LOG}/slow.log"
+ENV MYSQ_LOG_ERROR="${MYSQL_DEF_LOG}/error.log"
+ENV MYSQ_LOG_QUERY="${MYSQL_DEF_LOG}/query.log"
 
 ###
 ### Install
@@ -108,9 +111,9 @@ RUN \
 	echo "bind-address = 0.0.0.0"                          >> /etc/my.cnf && \
 	echo "socket = ${MYSQL_DEF_SCK}/mysqld.sock"           >> /etc/my.cnf && \
 	echo "pid-file = ${MYSQL_DEF_PID}/mysqld.pid"          >> /etc/my.cnf && \
-	echo "general_log_file = ${MYSQL_DEF_LOG}/mysql.log"   >> /etc/my.cnf && \
-	echo "slow_query_log_file = ${MYSQL_DEF_LOG}/slow.log" >> /etc/my.cnf && \
-	echo "log-error = ${MYSQL_DEF_LOG}/error.log"          >> /etc/my.cnf && \
+	echo "general_log_file = ${MYSQL_LOG_QUERY}"           >> /etc/my.cnf && \
+	echo "slow_query_log_file = ${MYSQL_LOG_SLOW}"         >> /etc/my.cnf && \
+	echo "log-error = ${MYSQL_LOG_ERROR}"                  >> /etc/my.cnf && \
 	echo "!includedir ${MYSQL_INCL}/"                      >> /etc/my.cnf && \
 	echo "!includedir ${MYSQL_CUST_INCL}/"                 >> /etc/my.cnf
 
