@@ -172,12 +172,12 @@ log "info" "Docker date set to: $(date)"
 ###
 
 # MYSQL_GENERAL_LOG
-set_mysql_custom_settings "mysqld" "general-log" "MYSQL_GENERAL_LOG" "" "${MYSQL_CUST_INCL}/logging.cnf"
+set_mysql_custom_settings "mysqld" "general-log" "MYSQL_GENERAL_LOG" "" "${MYSQL_BASE_INCL}/logging.cnf"
 
 # MYSQL_SOCKET_DIR
-set_mysql_custom_settings "client" "socket" "MYSQL_SOCKET_DIR" "/mysqld.sock" "${MYSQL_CUST_INCL}/socket.cnf"
-set_mysql_custom_settings "mysql"  "socket" "MYSQL_SOCKET_DIR" "/mysqld.sock" "${MYSQL_CUST_INCL}/socket.cnf"
-set_mysql_custom_settings "mysqld" "socket" "MYSQL_SOCKET_DIR" "/mysqld.sock" "${MYSQL_CUST_INCL}/socket.cnf"
+set_mysql_custom_settings "client" "socket" "MYSQL_SOCKET_DIR" "/mysqld.sock" "${MYSQL_BASE_INCL}/socket.cnf"
+set_mysql_custom_settings "mysql"  "socket" "MYSQL_SOCKET_DIR" "/mysqld.sock" "${MYSQL_BASE_INCL}/socket.cnf"
+set_mysql_custom_settings "mysqld" "socket" "MYSQL_SOCKET_DIR" "/mysqld.sock" "${MYSQL_BASE_INCL}/socket.cnf"
 
 # Take care about custom socket directories
 if set | grep "^MYSQL_SOCKET_DIR=" >/dev/null 2>&1; then
