@@ -1,12 +1,12 @@
 # MySQL 5.7 Docker
 
-<small>**Latest build:** 2017-05-21</small>
+<small>**Latest build:** 2017-07-01</small>
 
 [![Build Status](https://travis-ci.org/cytopia/docker-mysql-5.7.svg?branch=master)](https://travis-ci.org/cytopia/docker-mysql-5.7) [![](https://images.microbadger.com/badges/version/cytopia/mysql-5.7.svg)](https://microbadger.com/images/cytopia/mysql-5.7 "mysql-5.7") [![](https://images.microbadger.com/badges/image/cytopia/mysql-5.7.svg)](https://microbadger.com/images/cytopia/mysql-5.7 "mysql-5.7") [![](https://images.microbadger.com/badges/license/cytopia/mysql-5.7.svg)](https://microbadger.com/images/cytopia/mysql-5.7 "mysql-5.7")
 
 [![cytopia/mysql-5.7](http://dockeri.co/image/cytopia/mysql-5.7)](https://hub.docker.com/r/cytopia/mysql-5.7/)
 
-**[mysql 5.5](https://github.com/cytopia/docker-mysql-5.5) | [mysql 5.6](https://github.com/cytopia/docker-mysql-5.6) | mysql 5.7 | [mysql 8.0](https://github.com/cytopia/docker-mysql-8.0) | [mariadb 5.5](https://github.com/cytopia/docker-mariadb-5.5) | [mariadb 10.0](https://github.com/cytopia/docker-mariadb-10.0) | [mariadb 10.1](https://github.com/cytopia/docker-mariadb-10.1) | [mariadb 10.2](https://github.com/cytopia/docker-mariadb-10.2) | [mariadb 10.3](https://github.com/cytopia/docker-mariadb-10.3)**
+**[mysql 5.5](https://github.com/cytopia/docker-mysql-5.5) | [mysql 5.6](https://github.com/cytopia/docker-mysql-5.6) | mysql 5.7 | [mysql 8.0](https://github.com/cytopia/docker-mysql-8.0) | [mariadb 5.5](https://github.com/cytopia/docker-mariadb-5.5) | [mariadb 10.0](https://github.com/cytopia/docker-mariadb-10.0) | [mariadb 10.1](https://github.com/cytopia/docker-mariadb-10.1) | [mariadb 10.2](https://github.com/cytopia/docker-mariadb-10.2) | [mariadb 10.3](https://github.com/cytopia/docker-mariadb-10.3) | [percona 5.5](https://github.com/cytopia/docker-percona-5.5) | [percona 5.6](https://github.com/cytopia/docker-percona-5.6) | [percona 5.7](https://github.com/cytopia/docker-percona-5.7)**
 
 ----
 
