@@ -1,6 +1,6 @@
 # MySQL 5.7 Docker
 
-<small>**Latest build:** 2017-07-01</small>
+<small>**Latest build:** 2017-08-30</small>
 
 [![Build Status](https://travis-ci.org/cytopia/docker-mysql-5.7.svg?branch=master)](https://travis-ci.org/cytopia/docker-mysql-5.7) [![](https://images.microbadger.com/badges/version/cytopia/mysql-5.7.svg)](https://microbadger.com/images/cytopia/mysql-5.7 "mysql-5.7") [![](https://images.microbadger.com/badges/image/cytopia/mysql-5.7.svg)](https://microbadger.com/images/cytopia/mysql-5.7 "mysql-5.7") [![](https://images.microbadger.com/badges/license/cytopia/mysql-5.7.svg)](https://microbadger.com/images/cytopia/mysql-5.7 "mysql-5.7")
 
@@ -124,4 +124,4 @@ Configuration files inside this docker are read in the following order:
 
 **[Version]**
 
-mysqld  Ver 5.7.18 for Linux on x86_64 (MySQL Community Server (GPL))
+mysqld  Ver 5.7.19 for Linux on x86_64 (MySQL Community Server (GPL))
